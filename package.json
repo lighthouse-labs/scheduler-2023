@@ -18,7 +18,6 @@
     "storybook": "start-storybook -p 9009 -s public",
     "build-storybook": "build-storybook -s public",
     "coverage": "npm test -- --coverage --watchAll=false",
-    "test:cypress": "cypress open"
   },
   "browserslist": {
     "production": [
