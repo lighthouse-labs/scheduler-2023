@@ -15,8 +15,6 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "storybook": "start-storybook -p 9009 -s public",
-    "build-storybook": "build-storybook -s public",
     "coverage": "npm test -- --coverage --watchAll=false"
   },
   "browserslist": {
@@ -33,11 +31,6 @@
   },
   "devDependencies": {
     "@babel/core": "^7.4.3",
-    "@storybook/addon-actions": "^5.0.10",
-    "@storybook/addon-backgrounds": "^5.0.10",
-    "@storybook/addon-links": "^5.0.10",
-    "@storybook/addons": "^5.0.10",
-    "@storybook/react": "^5.0.10",
     "@testing-library/jest-dom": "^4.0.0",
     "@testing-library/react": "^8.0.4",
     "@testing-library/react-hooks": "^1.1.0",
