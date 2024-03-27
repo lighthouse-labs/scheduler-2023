@@ -5,7 +5,7 @@ import axios from "axios";
 import reducer, {
   SET_DAY,
   SET_APPLICATION_DATA,
-  SET_INTERVIEW
+  SET_INTERVIEW,
 } from "reducers/application";
 
 import useRealTimeUpdate from "hooks/useRealtimeUpdate";
@@ -15,25 +15,29 @@ export default function useApplicationData() {
     day: "Monday",
     days: [],
     appointments: {},
-    interviewers: {}
+    interviewers: {},
   });
 
-  const setDay = day => dispatch({ type: SET_DAY, day });
+  const setDay = (day) => dispatch({ type: SET_DAY, day });
 
   useEffect(() => {
     Promise.all([
       axios.get("/api/days"),
       axios.get("/api/appointments"),
-      axios.get("/api/interviewers")
-    ]).then(
-      ([{ data: days }, { data: appointments }, { data: interviewers }]) =>
-        dispatch({
-          type: SET_APPLICATION_DATA,
-          days,
-          appointments,
-          interviewers
-        })
-    );
+      axios.get("/api/interviewers"),
+    ]).then((resList) => {
+      for (const res of resList) {
+        if (!res) return;
+      }
+
+      const [{ data: days }, { data: appointments }, { data: interviewers }] = resList;
+      dispatch({
+        type: SET_APPLICATION_DATA,
+        days,
+        appointments,
+        interviewers,
+      });
+    });
   }, []);
 
   useRealTimeUpdate(dispatch);
@@ -43,7 +47,7 @@ export default function useApplicationData() {
       dispatch({
         type: SET_INTERVIEW,
         id,
-        interview
+        interview,
       });
     });
   }
@@ -53,7 +57,7 @@ export default function useApplicationData() {
       dispatch({
         type: SET_INTERVIEW,
         id,
-        interview: null
+        interview: null,
       });
     });
   }
@@ -62,6 +66,6 @@ export default function useApplicationData() {
     state,
     setDay,
     bookInterview,
-    cancelInterview
+    cancelInterview,
   };
 }
