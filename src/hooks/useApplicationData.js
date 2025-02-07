@@ -6,9 +6,7 @@ import reducer, {
   SET_DAY,
   SET_APPLICATION_DATA,
   SET_INTERVIEW
-} from "reducers/application";
-
-import useRealTimeUpdate from "hooks/useRealtimeUpdate";
+} from "../reducers/application";
 
 export default function useApplicationData() {
   const [state, dispatch] = useReducer(reducer, {
@@ -35,8 +33,6 @@ export default function useApplicationData() {
         })
     );
   }, []);
-
-  useRealTimeUpdate(dispatch);
 
   function bookInterview(id, interview) {
     return axios.put(`/api/appointments/${id}`, { interview }).then(() => {

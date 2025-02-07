@@ -4,10 +4,12 @@
 
 Install dependencies with `npm install`.
 
+Note: this project requires Node version 16+
+
 ## Running Webpack Development Server
 
 ```sh
-npm start
+npm run dev
 ```
 
 ## Running Jest Test Framework
